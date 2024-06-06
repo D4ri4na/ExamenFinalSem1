@@ -1,0 +1,27 @@
+#include <iostream>
+#include <map>
+
+using namespace std;
+
+void Tipo_de_comandos(string comand);
+
+int main (){
+
+   string comand;
+   cin>>comand;
+///"Funcion" para determinar el tipo de comando que quiere el usuario///
+    if (comand == "Add" ){
+        cout << "El usuario quiere meter datos";
+    }
+    else if (comand == "Del"){
+        cout << "El usuario quiere borrar datos";
+    }
+    else if(comand == "Find"){
+        cout << "El usuario quiere encontrar datos";
+    }
+    else if(comand == "Print"){
+        cout << "El usuario quiere imprimir los datos";
+    }
+///
+   return 0;
+}
