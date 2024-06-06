@@ -1,0 +1,20 @@
+#include <iostream>
+#include <map>
+
+using namespace std;
+
+void Tipo_de_comandos(string comand);
+
+int main (){
+   string comand;
+   cin>>comand;
+
+   Tipo_de_comandos(comand);
+
+   return 0;
+}
+void Tipo_de_comandos(string comand){
+    if (comand == "Add" ){
+        cout << "El codigo va bien";
+    }
+}
