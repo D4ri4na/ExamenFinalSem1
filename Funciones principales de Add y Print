@@ -1,0 +1,56 @@
+#include <iostream>
+#include <map>
+
+using namespace std;
+
+void funcion_add(map<string,string>& base_de_datos,string fecha,string evento);
+void funcion_delete(map<string,string>base_de_datos);
+void funcion_find(map<string,string>base_de_datos);
+void funcion_print(const map<string,string>& base_de_datos);
+
+int main (){
+
+   string comand;
+   map<string,string>base_de_datos;
+   string fecha, evento;
+///"Funcion" para determinar el tipo de comando que quiere el usuario///
+while(true){
+    cin>>comand;
+    if (comand == "Stop" ){
+        break;
+    }
+    if (comand == "Add" ){
+        cin >> fecha >> evento;
+        funcion_add(base_de_datos,fecha,evento);
+    }
+    else if (comand == "Del"){
+        cin >> fecha >> evento;
+        base_de_datos[fecha] = evento;
+        funcion_delete(base_de_datos);
+    }
+    else if(comand == "Find"){
+        cin >> fecha;
+        funcion_find(base_de_datos);
+        
+    }
+    else if(comand == "Print"){
+        funcion_print(base_de_datos);
+    }
+///
+}
+return 0;
+}
+    void funcion_add(map<string, string>& base_de_datos ,string fecha ,string evento) {
+        base_de_datos[fecha] = evento;
+    }
+    void funcion_delete(map<string,string>base_de_datos){
+
+    }
+    void funcion_find(map<string,string>base_de_datos){
+
+    }
+    void funcion_print(const map<string,string>& base_de_datos){
+        for(const auto& item : base_de_datos) {
+        cout << item.first << " " << item.second << endl;
+    }
+    }
