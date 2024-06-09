@@ -12,6 +12,7 @@ void funcion_print(const map<string,string>& base_de_datos);
 map<string, string> reverse_map(map<string, string> m);
 void funcion_delete_one(map<string,string>& base_de_datos, string evento);
 string formatear_fecha(string fecha);
+
 int main (){
    string comando;
    map<string,string>base_de_datos;
@@ -38,13 +39,13 @@ while(true){
             if (formato_de_fecha(fecha)) {
                 char siguiente_char = cin.peek(); // Miramos el siguiente carácter sin extraerlo
                 if (siguiente_char == '\n' || siguiente_char == EOF) { // Si es el final de la línea o archivo
-                    funcion_delete(base_de_datos, fecha); // Llamamos a funcion_delete
+                    funcion_delete(base_de_datos, fecha); 
                 } else {
-                    getline(cin, evento); // Leemos el evento
+                    getline(cin, evento); 
                     if (!evento.empty()) {
                         evento.erase(0, 1); // Eliminamos el espacio en blanco al inicio del evento
                     }
-                    funcion_delete_one(base_de_datos, evento); // Llamamos a funcion_delete_one
+                    funcion_delete_one(base_de_datos, evento); 
                 }
     }
     }
@@ -65,7 +66,7 @@ while(true){
 return 0;
 }
     bool es_digito(char c){
-        return c >= '0' && c <= '9';
+        return c >= '0' && c <= '9'; //Ver si son numeros
     }
     bool formato_de_fecha(string fecha){
     // Encontrar las posiciones de los separadores 
@@ -87,7 +88,7 @@ return 0;
         return false;
     }
 
-    // Separar el string en variaes partes
+    // Separar el string en varias partes
     int year = 0;
     bool es_year_negativo = false;
     for (int i = 0; i < posicion1; ++i) {
@@ -153,11 +154,11 @@ return 0;
     return true;
     }
 void funcion_add(map<string, string>& base_de_datos, string fecha, string evento) {
-    if (base_de_datos.find(evento) == base_de_datos.end()) {
+    if (base_de_datos.find(evento) == base_de_datos.end()){
     base_de_datos[evento] = fecha;
     }
 }
-    void funcion_delete(map<string,string>& base_de_datos, string fecha){
+void funcion_delete(map<string,string>& base_de_datos, string fecha){
     int contador = 0;
     for (auto it = base_de_datos.begin(); it != base_de_datos.end();) {
         if (it->second < fecha) { 
@@ -180,7 +181,7 @@ void funcion_delete_one(map<string,string>& base_de_datos, string evento){
     }
 }
 
-    void funcion_find(map<string,string>base_de_datos, string fecha){
+void funcion_find(map<string,string>base_de_datos, string fecha){
         reverse_map(base_de_datos);
         for(const auto& item : base_de_datos) {
         if(item.second == fecha){
@@ -193,13 +194,12 @@ void funcion_print(const map<string,string>& base_de_datos){
         string fecha = formatear_fecha(item.second);
         // Verificar si el primer carácter del año es un dígito positivo
         if (fecha[0] != '-') {
-        // Formatea la fecha antes de imprimirla
         string fecha_formateada = formatear_fecha(item.second);
         cout << fecha_formateada << " " << item.first << endl;
     }
 }
 }
-    map<string, string> reverse_map(map<string, string> m) {
+map<string, string> reverse_map(map<string, string> m) {
     map<string, string> result;
     for(const auto& item : m) {
         result[item.second] = item.first;
