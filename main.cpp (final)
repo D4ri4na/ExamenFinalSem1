@@ -1,0 +1,59 @@
+#include <iostream>
+#include <map>
+#include <string>
+#include "main.h"
+using namespace std;
+
+int main (){
+   string comando;
+   map<string,string>base_de_datos;
+   string fecha;
+   string evento;
+
+///"Funcion" para determinar el tipo de comando que quiere el usuario///
+
+while(true){
+    cin>>comando;
+    if (comando == "Stop" ){
+        break;
+    }
+    else if (comando == "Add" ){
+        cin >> fecha >> evento;
+         if (formato_de_fecha(fecha)) {
+                funcion_add(base_de_datos, fecha, evento);
+            } else {
+                cout << "Wrong date format: " << fecha << endl;
+            }
+    }
+    else if (comando == "Del") {
+            cin >> fecha;
+            if (formato_de_fecha(fecha)) {
+                char siguiente_char = cin.peek(); // Miramos el siguiente carácter sin extraerlo
+                if (siguiente_char == '\n' || siguiente_char == EOF) { // Si es el final de la línea o archivo
+                    funcion_delete(base_de_datos, fecha); 
+                } else {
+                    getline(cin, evento); 
+                    if (!evento.empty()) {
+                        evento.erase(0, 1); // Eliminamos el espacio en blanco al inicio del evento
+                    }
+                    funcion_delete_one(base_de_datos, evento); 
+                }
+    }
+    }
+    else if(comando == "Find"){
+        cin >> fecha;
+        if (formato_de_fecha(fecha)) {
+        funcion_find(base_de_datos, fecha);
+        }
+    }
+    else if(comando == "Print"){
+        funcion_print(base_de_datos);
+    }
+    else {
+        cout<<"Unkown command: "<< comando <<endl;
+    }
+
+}
+return 0;
+}
+    
